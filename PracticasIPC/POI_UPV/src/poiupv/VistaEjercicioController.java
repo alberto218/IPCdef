@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package poiupv;
 
 import java.io.IOException;
@@ -15,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
 /**
@@ -40,7 +37,9 @@ public class VistaEjercicioController implements Initializable {
     private Button btnMapa;
     @FXML
     private Button btnCorregir;
-
+    
+    private ToggleGroup grupoRespuestas;
+    private ejercicios ejercicioActual;
     /**
      * Initializes the controller class.
      */
@@ -55,6 +54,11 @@ public class VistaEjercicioController implements Initializable {
         respuesta4.setText(ej.respuestas.get(3));
         enunciado.setText(ej.getTexto());
     
+        grupoRespuestas = new ToggleGroup();
+        respuesta1.setToggleGroup(grupoRespuestas);
+        respuesta2.setToggleGroup(grupoRespuestas);
+        respuesta3.setToggleGroup(grupoRespuestas);
+        respuesta4.setToggleGroup(grupoRespuestas);
     }
     
     @FXML
@@ -68,6 +72,50 @@ public class VistaEjercicioController implements Initializable {
         stage.show();
         } catch (IOException e) {
         e.printStackTrace();
+        }
     }
-}
+    
+    @FXML
+    private void corregirResponseta() {
+        RadioButton seleccionada = (RadioButton) grupoRespuestas.getSelectedToggle();
+
+        if (seleccionada == null) {
+        System.out.println("Por favor selecciona una respuesta.");
+        return;
+        }
+
+        int indexSeleccionado = -1;
+        if (seleccionada == respuesta1) indexSeleccionado = 0;
+        else if (seleccionada == respuesta2) indexSeleccionado = 1;
+        else if (seleccionada == respuesta3) indexSeleccionado = 2;
+        else if (seleccionada == respuesta4) indexSeleccionado = 3;
+
+    // Cambio aquí: usar ejercicioActual en lugar de la clase ejercicios
+        int indexCorrecto = ejercicioActual.getRespuestaCorrecta();
+
+        if (indexSeleccionado == indexCorrecto) {
+        seleccionada.setStyle("-fx-background-color: #90ee90"); // Verde claro para correcto
+        System.out.println("Respuesta correcta");
+        } else {
+        seleccionada.setStyle("-fx-background-color: #ffcccb"); // Rojo claro para incorrecto
+        RadioButton correcta = switch (indexCorrecto) {
+            case 0 -> respuesta1;
+            case 1 -> respuesta2;
+            case 2 -> respuesta3;
+            case 3 -> respuesta4;
+            default -> null;
+        };
+
+        if (correcta != null) {
+            correcta.setStyle("-fx-background-color: #90ee90"); // Resalta la correcta
+        }
+        System.out.println("Respuesta incorrecta");
+        }
+
+        respuesta1.setDisable(true);
+        respuesta2.setDisable(true);
+        respuesta3.setDisable(true);
+        respuesta4.setDisable(true);
+    }
+
 }
