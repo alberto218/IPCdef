@@ -5,7 +5,7 @@ import java.util.List;
 public class ejercicios {
     private int respuestaCorrecta;
     private String enunciado;
-    private List<String> respuestas;
+    List<String> respuestas;
 
     public ejercicios(int respuestaCorrecta, String enunciado, List<String> respuestas) {
         this.respuestaCorrecta = respuestaCorrecta;
@@ -51,5 +51,9 @@ public class ejercicios {
             return respuestas.get(respuestaCorrecta);
         }
         return "No hay respuesta correcta definida";
+    }
+
+    String getTexto() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
