@@ -30,15 +30,24 @@
             <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="26.0" prefWidth="204.0" style="-fx-background-color: #FF7F50; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 2, 2)02;" text="Volver">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" top="10.0" />
-               </HBox.margin></Button>
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
             <Button fx:id="btnRealizarEjercicio" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="26.0" prefWidth="204.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 2, 2); -fx-background-color: #7CFC00;" text="Seleccionar">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" top="10.0" />
-               </HBox.margin></Button>
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
             <Button fx:id="btnaleatorio" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="26.0" prefWidth="204.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 2, 2); -fx-background-color: #4682B4;" text="Aleatorio">
                <HBox.margin>
                   <Insets left="20.0" right="20.0" top="10.0" />
-               </HBox.margin></Button>
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
          </children>
       </HBox>
    </children>
