@@ -75,7 +75,6 @@ public class VistaEjercicioController implements Initializable {
         }
     }
     
-    @FXML
     private void corregirResponseta() {
         RadioButton seleccionada = (RadioButton) grupoRespuestas.getSelectedToggle();
 
