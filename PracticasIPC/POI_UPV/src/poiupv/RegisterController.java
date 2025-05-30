@@ -1,9 +1,14 @@
+package poiupv;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Navigation;
+import model.User;
+import model.NavDAOException;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.Period;
@@ -23,16 +28,22 @@ public class RegisterController {
 
     @FXML
     private void initialize() {
-        // Configurar el botón de selección de avatar
-        chooseAvatarBtn.setOnAction(event -> selectAvatar());
-        
-        // Configurar el botón de registro
-        registerBtn.setOnAction(event -> registerUser());
-        
-        // Inicializar el DatePicker con valores razonables
+        // Configurar DatePicker con fecha por defecto (18 años atrás)
         birthdatePicker.setValue(LocalDate.now().minusYears(18));
+        
+        // Configurar validación de fecha mínima (16 años)
+        birthdatePicker.setDayCellFactory(picker -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate minDate = LocalDate.now().minusYears(100);
+                LocalDate maxDate = LocalDate.now().minusYears(16);
+                setDisable(empty || date.isBefore(minDate) || date.isAfter(maxDate));
+            }
+        });
     }
 
+    @FXML
     private void selectAvatar() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleccionar Avatar");
@@ -42,70 +53,86 @@ public class RegisterController {
         
         File selectedFile = fileChooser.showOpenDialog(avatarPreview.getScene().getWindow());
         if (selectedFile != null) {
-            avatarPath = selectedFile.getAbsolutePath();
-            avatarPreview.setImage(new Image("file:" + avatarPath));
+            try {
+                avatarPath = selectedFile.getAbsolutePath();
+                avatarPreview.setImage(new Image("file:" + avatarPath));
+            } catch (Exception e) {
+                errorLabel.setText("Error al cargar la imagen");
+            }
         }
     }
 
+    @FXML
     private void registerUser() {
-        // Validar campos
-        if (!validateFields()) {
-            return;
-        }
-        
-        // Crear el nuevo perfil (aquí iría tu lógica de base de datos)
-        String nickname = nicknameField.getText();
-        String email = emailField.getText();
+        String nickname = nicknameField.getText().trim();
+        String email = emailField.getText().trim();
         String password = passwordField.getText();
         LocalDate birthdate = birthdatePicker.getValue();
-        
-        // Aquí normalmente guardarías en la base de datos
-        System.out.println("Nuevo usuario registrado:");
-        System.out.println("Nickname: " + nickname);
-        System.out.println("Email: " + email);
-        System.out.println("Contraseña: " + password);
-        System.out.println("Fecha nacimiento: " + birthdate);
-        System.out.println("Avatar: " + (avatarPath != null ? avatarPath : "Ninguno"));
-        
-        // Mostrar mensaje de éxito y cerrar ventana
-        showAlert("Registro exitoso", "Usuario creado correctamente", Alert.AlertType.INFORMATION);
-        ((Stage) registerBtn.getScene().getWindow()).close();
+
+        // Validar campos según requisitos
+        if (!validateFields(nickname, email, password, birthdate)) {
+            return;
+        }
+
+        try {
+            Navigation navigation = Navigation.getInstance();
+            
+            // Verificar si el nickname ya existe
+            if (navigation.authenticate(nickname, password) != null) {
+                errorLabel.setText("El nombre de usuario ya existe");
+                return;
+            }
+
+            // Registrar usuario
+            Image avatar = avatarPath != null ? new Image("file:" + avatarPath) : null;
+            User newUser = navigation.registerUser(nickname, email, password, avatar, birthdate);
+            
+            if (newUser != null) {
+                showAlert("Registro exitoso", "Usuario creado correctamente", Alert.AlertType.INFORMATION);
+                closeWindow();
+            } else {
+                errorLabel.setText("Error al registrar el usuario");
+            }
+            
+        } catch (NavDAOException e) {
+            errorLabel.setText("Error de base de datos: " + e.getMessage());
+        } catch (Exception e) {
+            errorLabel.setText("Error inesperado: " + e.getMessage());
+        }
     }
 
-    private boolean validateFields() {
-        // Validar nickname
-        if (nicknameField.getText().isEmpty()) {
-            errorLabel.setText("El nickname es obligatorio");
+    private boolean validateFields(String nickname, String email, String password, LocalDate birthdate) {
+        // Validación de nickname (6-15 caracteres, sin espacios)
+        if (nickname == null || nickname.length() < 6 || nickname.length() > 15 || nickname.contains(" ")) {
+            errorLabel.setText("Nickname debe tener 6-15 caracteres sin espacios");
             return false;
         }
-        
-        // Validar email
-        if (emailField.getText().isEmpty() || !emailField.getText().contains("@")) {
+
+        // Validación de email
+        if (email == null || !User.checkEmail(email)) {
             errorLabel.setText("Ingrese un email válido");
             return false;
         }
-        
-        // Validar contraseña
-        if (passwordField.getText().length() < 6) {
-            errorLabel.setText("La contraseña debe tener al menos 6 caracteres");
+
+        // Validación de contraseña (8-20 chars, mayúsculas, minúsculas, números y especiales)
+        if (password == null || !User.checkPassword(password)) {
+            errorLabel.setText("La contraseña debe tener 8-20 caracteres, incluyendo mayúsculas, minúsculas, números y caracteres especiales");
             return false;
         }
-        
-        // Validar fecha de nacimiento
-        if (birthdatePicker.getValue() == null) {
-            errorLabel.setText("Seleccione una fecha de nacimiento");
+
+        // Validación de fecha de nacimiento (mínimo 16 años)
+        if (birthdate == null || Period.between(birthdate, LocalDate.now()).getYears() < 16) {
+            errorLabel.setText("Debes tener al menos 16 años para registrarte");
             return false;
         }
-        
-        // Validar edad mínima (18 años)
-        Period age = Period.between(birthdatePicker.getValue(), LocalDate.now());
-        if (age.getYears() < 18) {
-            errorLabel.setText("Debes tener al menos 18 años para registrarte");
-            return false;
-        }
-        
+
         errorLabel.setText("");
         return true;
+    }
+
+    private void closeWindow() {
+        Stage stage = (Stage) registerBtn.getScene().getWindow();
+        stage.close();
     }
 
     private void showAlert(String title, String message, Alert.AlertType type) {
