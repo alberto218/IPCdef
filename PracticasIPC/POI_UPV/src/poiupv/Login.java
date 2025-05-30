@@ -1,7 +1,5 @@
 package poiupv;
 
-
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,13 +22,6 @@ import model.NavDAOException;
  */
 public class Login {
 
-@FXML
-    private Label titulo;   
-    private Label registerLabel;
-    private TextField nicknameField;
-    private PasswordField passwordField;
-    private Label nicknameErrorLabel;
-    private Label passwordErrorLabel;
     @FXML
     private BorderPane borderpane;
     @FXML
@@ -47,19 +38,21 @@ public class Login {
     private Label labelNick;
     @FXML
     private Label labelEstado;
+    @FXML
+    private Label titulo;
 
     public void initialize() {
         clearErrors();
 
-        registerLabel.setOnMouseClicked(event -> {
+        labelRegistro.setOnMouseClicked(event -> {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
                 Parent root = loader.load();
-                Stage stage = (Stage) registerLabel.getScene().getWindow();
+                Stage stage = (Stage) labelRegistro.getScene().getWindow();
                 stage.setScene(new Scene(root));
             } catch (IOException e) {
                 e.printStackTrace();
-                nicknameErrorLabel.setText("Error al cargar la ventana de registro.");
+                nickTextErrorLabel.setText("Error al cargar la ventana de registro.");
             }
         });
     }

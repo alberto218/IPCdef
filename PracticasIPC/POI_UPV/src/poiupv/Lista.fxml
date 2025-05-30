@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.ListaControlador">
+   <children>
+      <Label prefHeight="58.0" prefWidth="204.0" text="NavegaTest" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="180.0" />
+         </VBox.margin>
+      </Label>
+      <Pane>
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0" />
+            <ListView layoutX="83.0" layoutY="14.0" prefHeight="286.0" prefWidth="424.0" />
+         </children>
+      </Pane>
+      <HBox prefHeight="26.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="26.0" prefWidth="220.0" text="Volver" />
+            <Button fx:id="btnRealizarEjercicio" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="26.0" prefWidth="207.0" text="Seleccionar" />
+            <Button fx:id="btnaleatorio" mnemonicParsing="false" onAction="#buttonHandler" prefHeight="26.0" prefWidth="322.0" text="Aleatorio" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
