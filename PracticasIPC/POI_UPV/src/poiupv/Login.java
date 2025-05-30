@@ -96,17 +96,17 @@ private void clearErrors() {
     @FXML
     private void handleLabelSalida(MouseEvent event) {
     }
-
+    
     @FXML
     private void handleLabelRegistro(MouseEvent event) {
     }
-
+    
     @FXML
     private void registrarse(MouseEvent event) {
     }
-
+    
     @FXML
     private void iniciarSesion(ActionEvent event) {
     }
-
+    
 }
