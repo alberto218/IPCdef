@@ -41,6 +41,11 @@ public class Login {
     @FXML
     private Label titulo;
 
+    @FXML
+    private Label nicknameErrorLabel;
+    @FXML
+    private Label passwordErrorLabel;
+    
     public void initialize() {
         clearErrors();
 
@@ -52,15 +57,15 @@ public class Login {
                 stage.setScene(new Scene(root));
             } catch (IOException e) {
                 e.printStackTrace();
-                nickTextErrorLabel.setText("Error al cargar la ventana de registro.");
+                labelEstado.setText("Error al cargar la ventana de registro.");;
             }
         });
     }
 
     private void handleLogin() throws NavDAOException {
         clearErrors();
-        String nick = nicknameField.getText().trim();
-        String password = passwordField.getText().trim();
+        String nick = nickText.getText().trim();
+        String password = contraText.getText().trim();
 
         Navigation nav = Navigation.getInstance();
 
