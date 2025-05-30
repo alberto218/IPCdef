@@ -69,16 +69,6 @@ public class Login {
 
         Navigation nav = Navigation.getInstance();
 
-        if (nick.isEmpty()) {
-            nicknameErrorLabel.setText("El nombre de usuario es obligatorio.");
-            return;
-        }
-
-        if (!nav.exitsNickName(nick)) {
-            nicknameErrorLabel.setText("El nombre de usuario no existe.");
-            return;
-        }
-
 User user = nav.authenticate(nick, password);
         if (user == null) {
             passwordErrorLabel.setText("Contraseña incorrecta.");

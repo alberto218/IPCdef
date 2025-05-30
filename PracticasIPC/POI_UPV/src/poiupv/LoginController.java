@@ -23,10 +23,6 @@ public class LoginController implements Initializable {
     @FXML
     private TextField nickText;
     @FXML
-    private Label nicknameErrorLabel;
-    @FXML
-    private Label passwordErrorLabel;
-    @FXML
     private TextField contraText;
     @FXML
     private Button botonLogin;

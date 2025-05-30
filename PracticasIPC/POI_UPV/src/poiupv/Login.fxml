@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="625.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.LoginController">
    <children>
       <HBox prefHeight="63.0" prefWidth="626.0">
@@ -36,16 +35,6 @@
             <Insets left="50.0" right="50.0" top="5.0" />
          </VBox.margin>
       </TextField>
-      <Label fx:id="nicknameErrorLabel" prefHeight="18.0" prefWidth="642.0" text="Label">
-         <VBox.margin>
-            <Insets left="50.0" right="50.0" />
-         </VBox.margin>
-      </Label>
-      <Label fx:id="passwordErrorLabel" prefHeight="18.0" prefWidth="644.0" text="Label">
-         <VBox.margin>
-            <Insets left="50.0" right="50.0" />
-         </VBox.margin>
-      </Label>
       <Label text="Contraseña">
          <VBox.margin>
             <Insets left="50.0" top="20.0" />
