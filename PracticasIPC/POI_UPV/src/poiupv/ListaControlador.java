@@ -37,7 +37,6 @@ import static poiupv.PoiUPVApp.escenasMap;
  */
 public class ListaControlador implements Initializable {
 
-    @FXML
     private ListView<ejercicios> list;
     @FXML
     private Button btnRealizarEjercicio;
@@ -47,10 +46,6 @@ public class ListaControlador implements Initializable {
     @FXML
     private Button btnaleatorio;
     int id;
-    @FXML
-    private Label inicioLabel;
-    @FXML
-    private Label btnLabel;
     
     /**
      * Initializes the controller class.
