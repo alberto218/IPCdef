@@ -1,34 +1,55 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package poiupv;
 
-import java.util.List;         
-import java.util.ArrayList;
-import java.util.Collections;
-/**
- *
- * @author alber
- */
+import java.util.List;
+
 public class ejercicios {
-    private final String texto;
-    public List<String> respuestas;
-    private final int RespuestaCorrecta;
-    
-    public ejercicios(int RespuestaCorrecta, String texto, List<String> respuestas) {
-        this.texto = texto;
-        this.respuestas = new ArrayList<>(respuestas);
-        this.RespuestaCorrecta = RespuestaCorrecta;
+    private int respuestaCorrecta;
+    private String enunciado;
+    private List<String> respuestas;
+
+    public ejercicios(int respuestaCorrecta, String enunciado, List<String> respuestas) {
+        this.respuestaCorrecta = respuestaCorrecta;
+        this.enunciado = enunciado;
+        this.respuestas = respuestas;
     }
-    
-    public String getTexto() { return texto; }
-    public int getRespuestaCorrecta() { return RespuestaCorrecta; }
-    public List<String> getRespuestas() { return new ArrayList<>(respuestas); }
-    
-    public List<String> getRespuestasMezcladas() {
-        List<String> respuestasMezcladas = new ArrayList<>(respuestas);
-        Collections.shuffle(respuestasMezcladas);
-        return respuestasMezcladas;
+
+    // Getters
+    public int getRespuestaCorrecta() {
+        return respuestaCorrecta;
+    }
+
+    public String getEnunciado() {
+        return enunciado;
+    }
+
+    public List<String> getRespuestas() {
+        return respuestas;
+    }
+
+    // Método para mostrar el ejercicio formateado
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("ENUNCIADO:\n").append(enunciado).append("\n\n");
+        sb.append("RESPUESTAS:\n");
+        
+        for (int i = 0; i < respuestas.size(); i++) {
+            sb.append(i + 1).append(") ").append(respuestas.get(i)).append("\n");
+        }
+        
+        return sb.toString();
+    }
+
+    // Método para verificar si una respuesta es correcta
+    public boolean esRespuestaCorrecta(int indiceRespuesta) {
+        return indiceRespuesta == respuestaCorrecta;
+    }
+
+    // Método para obtener la respuesta correcta como texto
+    public String getRespuestaCorrectaTexto() {
+        if (respuestaCorrecta >= 0 && respuestaCorrecta < respuestas.size()) {
+            return respuestas.get(respuestaCorrecta);
+        }
+        return "No hay respuesta correcta definida";
     }
 }

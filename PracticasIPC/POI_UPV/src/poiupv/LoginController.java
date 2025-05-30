@@ -34,53 +34,55 @@ public class LoginController {
     }
 
     @FXML
-    private void iniciarSesion() {
-        String nickname = nickText.getText();
-        String password = contraText.getText();
+private void iniciarSesion() {
+    String nickname = nickText.getText();
+    String password = contraText.getText();
 
-        if (nickname.isEmpty() || password.isEmpty()) {
-            showAlert("Error", "Por favor ingrese nombre de usuario y contraseña");
+    if (nickname.isEmpty() || password.isEmpty()) {
+        showAlert("Error", "Por favor ingrese nombre de usuario y contraseña");
+        return;
+    }
+
+    try {
+        Navigation navigation = Navigation.getInstance();
+        
+        // Usuario por defecto para pruebas
+        if (nickname.equals("user1") && password.equals("User123!")) {
+            abrirListaEjercicios();  // Cambiado para abrir la lista de ejercicios
             return;
         }
 
-        try {
-            Navigation navigation = Navigation.getInstance();
-            
-            // Usuario por defecto para pruebas (según documentación)
-            if (nickname.equals("user1") && password.equals("User123!")) {
-                openMainScreen();
-                return;
-            }
-
-            User user = navigation.authenticate(nickname, password);
-            if (user == null) {
-                showAlert("Error", "Nombre de usuario o contraseña incorrectos");
-                return;
-            }
-
-            openMainScreen();
-            
-        } catch (NavDAOException e) {
-            showAlert("Error de base de datos", "No se pudo acceder a los datos de usuario: " + e.getMessage());
+        User user = navigation.authenticate(nickname, password);
+        if (user == null) {
+            showAlert("Error", "Nombre de usuario o contraseña incorrectos");
+            return;
         }
-    }
 
-    private void openMainScreen() {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("PantallaPrincipal.fxml"));
-            Stage stage = (Stage) botonLogin.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            showAlert("Error", "No se pudo cargar la pantalla principal");
-        }
+        abrirListaEjercicios();  // Cambiado para abrir la lista de ejercicios
+        
+    } catch (NavDAOException e) {
+        showAlert("Error de base de datos", "No se pudo acceder a los datos de usuario: " + e.getMessage());
     }
+}
 
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
+private void abrirListaEjercicios() {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ListaEjercicios.fxml"));
+        Parent root = loader.load();
+        
+        // Obtener el controlador y pasar datos si es necesario
+        ListaControlador controller = loader.getController();
+        
+        Stage stage = (Stage) botonLogin.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    } catch (IOException e) {
+        showAlert("Error", "No se pudo cargar la pantalla de ejercicios");
     }
+}
+
+    private void showAlert(String error, String nombre_de_usuario_o_contraseña_incorrecto) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
 }
