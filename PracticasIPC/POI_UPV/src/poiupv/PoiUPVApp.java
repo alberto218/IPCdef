@@ -36,6 +36,7 @@ public class PoiUPVApp extends Application {
     
     public static void main(String[] args) {
         launch(args);
+        
     }
     
     public static Map<String, Object> controllersMap;
