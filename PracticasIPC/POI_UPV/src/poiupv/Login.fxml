@@ -36,7 +36,7 @@
             <Insets left="50.0" right="50.0" top="5.0" />
          </VBox.margin>
       </TextField>
-      <Label fx:id="nicknameErrorLabel" alignment="CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="626.0" text="fsdfsfsefsefsefsefs" textFill="RED">
+      <Label fx:id="nicknameErrorLabel" alignment="CENTER" contentDisplay="TOP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="626.0" textFill="RED">
          <padding>
             <Insets top="20.0" />
          </padding>
@@ -54,7 +54,7 @@
             <Insets left="50.0" right="50.0" top="5.0" />
          </VBox.margin>
       </PasswordField>
-      <Label fx:id="passwordErrorLabel" alignment="CENTER" prefHeight="36.0" prefWidth="626.0" text="Label" textFill="RED" />
+      <Label fx:id="passwordErrorLabel" alignment="CENTER" prefHeight="36.0" prefWidth="626.0" textFill="RED" />
       <HBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="74.0" prefWidth="626.0">
          <children>
             <Button fx:id="botonLogin" alignment="CENTER" mnemonicParsing="false" onAction="#iniciarSesion" prefHeight="30.0" prefWidth="668.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 2, 2); -fx-background-color: #7CFC00;" text="Iniciar Sesión">
