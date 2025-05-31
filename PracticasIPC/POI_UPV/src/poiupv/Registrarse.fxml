@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.RegisterController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="479.0" prefWidth="490.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.RegisterController">
    <children>
       <Label alignment="CENTER" prefHeight="46.0" prefWidth="603.0" text="Registro de Usuario">
          <font>
@@ -37,6 +37,9 @@
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Label>
             <Label text="Correo electrónico: " GridPane.rowIndex="1">
                <padding>
@@ -47,6 +50,9 @@
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Label>
             <Label text="Fecha de nacimiento:" GridPane.rowIndex="3">
                <GridPane.margin>
@@ -72,7 +78,7 @@
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
                <children>
                   <Label text="Avatar:" />
-                  <Button fx:id="chooseAvatarBtn" mnemonicParsing="false" onAction="#chooseAvatar" text="Seleccionar imagen">
+                  <Button fx:id="chooseAvatarBtn" mnemonicParsing="false" onAction="#chooseAvatar" style="-fx-background-color: #7CFC00; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 2, 2);" text="Seleccionar imagen">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
@@ -90,7 +96,7 @@
             <Insets bottom="15.0" left="15.0" />
          </VBox.margin>
       </Label>
-      <Button fx:id="registerBtn" mnemonicParsing="false" onAction="#registerUser" prefHeight="26.0" prefWidth="603.0" text="Registrarse">
+      <Button fx:id="registerBtn" mnemonicParsing="false" onAction="#registerUser" prefHeight="26.0" prefWidth="603.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 2, 2); -fx-background-color: #7CFC00;" text="Registrarse">
          <VBox.margin>
             <Insets left="15.0" right="15.0" />
          </VBox.margin>

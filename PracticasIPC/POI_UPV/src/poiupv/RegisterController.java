@@ -31,7 +31,6 @@ public class RegisterController {
 
     private String avatarPath;
 
-    @FXML
     private void initialize() {
         birthdatePicker.setValue(LocalDate.now().minusYears(18));
         birthdatePicker.setDayCellFactory(picker -> new DateCell() {
