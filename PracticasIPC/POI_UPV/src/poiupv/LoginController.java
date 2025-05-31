@@ -8,81 +8,81 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Navigation;
 import model.User;
-import model.NavDAOException;
-import java.io.IOException;
 
+import java.io.IOException;
+import model.NavDAOException;
+
+/**
+ *
+ * @author Diego Molina
+ */
 public class LoginController {
 
-    @FXML private TextField nickText;
-    @FXML private TextField contraText;
-    @FXML private Button botonLogin;
-    @FXML private Label labelRegistro;
+    @FXML
+    private Label titulo;   
+    @FXML
+    private Label registerLabel;
+    @FXML
+    private TextField nicknameField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private Button loginBtn;
+    @FXML
+    private Label nicknameErrorLabel;
+    @FXML
+    private Label passwordErrorLabel;
+    
+    
 
     @FXML
-    private void initialize() {
-        // Configurar evento para el label de registro
-        labelRegistro.setOnMouseClicked(event -> {
+    public void initialize() {
+        clearErrors();
+
+        registerLabel.setOnMouseClicked(event -> {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("Registrarse.fxml"));
-                Stage stage = (Stage) labelRegistro.getScene().getWindow();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Register.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) registerLabel.getScene().getWindow();
                 stage.setScene(new Scene(root));
-                stage.show();
             } catch (IOException e) {
-                showAlert("Error", "No se pudo cargar la pantalla de registro");
+                e.printStackTrace();
+                nicknameErrorLabel.setText("Error al cargar la ventana de registro.");
             }
         });
     }
 
     @FXML
-private void iniciarSesion() {
-    String nickname = nickText.getText();
-    String password = contraText.getText();
+    private void handleLogin() throws NavDAOException {
+        clearErrors();
+        String nick = nicknameField.getText().trim();
+        String password = passwordField.getText().trim();
 
-    if (nickname.isEmpty() || password.isEmpty()) {
-        showAlert("Error", "Por favor ingrese nombre de usuario y contraseña");
-        return;
-    }
+        Navigation nav = Navigation.getInstance();
 
-    try {
-        Navigation navigation = Navigation.getInstance();
-        
-        // Usuario por defecto para pruebas
-        if (nickname.equals("user1") && password.equals("User123!")) {
-            abrirListaEjercicios();  // Cambiado para abrir la lista de ejercicios
+        if (nick.isEmpty()) {
+            nicknameErrorLabel.setText("El nombre de usuario es obligatorio.");
             return;
         }
 
-        User user = navigation.authenticate(nickname, password);
+        if (!nav.exitsNickName(nick)) {
+            nicknameErrorLabel.setText("El nombre de usuario no existe.");
+            return;
+        }
+
+        User user = nav.authenticate(nick, password);
         if (user == null) {
-            showAlert("Error", "Nombre de usuario o contraseña incorrectos");
-            return;
+            passwordErrorLabel.setText("Contraseña incorrecta.");
+        } else {
+            // Éxito: avanzar a la siguiente ventana
+            System.out.println("Login correcto");
+            // cargarMenuPrincipal(user);
         }
-
-        abrirListaEjercicios();  // Cambiado para abrir la lista de ejercicios
-        
-    } catch (NavDAOException e) {
-        showAlert("Error de base de datos", "No se pudo acceder a los datos de usuario: " + e.getMessage());
     }
-}
 
-private void abrirListaEjercicios() {
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ListaEjercicios.fxml"));
-        Parent root = loader.load();
-        
-        // Obtener el controlador y pasar datos si es necesario
-        ListaControlador controller = loader.getController();
-        
-        Stage stage = (Stage) botonLogin.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    } catch (IOException e) {
-        showAlert("Error", "No se pudo cargar la pantalla de ejercicios");
+    private void clearErrors() {
+        nicknameErrorLabel.setText("");
+        passwordErrorLabel.setText("");
     }
-}
 
-    private void showAlert(String error, String nombre_de_usuario_o_contraseña_incorrecto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }
