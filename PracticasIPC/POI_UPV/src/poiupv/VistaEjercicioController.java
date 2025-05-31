@@ -3,6 +3,7 @@ package poiupv;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -115,6 +116,21 @@ public class VistaEjercicioController implements Initializable {
         respuesta2.setDisable(true);
         respuesta3.setDisable(true);
         respuesta4.setDisable(true);
+    }
+
+    @FXML
+    private void handleBackButton(ActionEvent event) {
+        try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Lista.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Lista de ejercicios");
+        stage.show();
+        } catch (IOException e) {
+        e.printStackTrace();
+        }
+
     }
 
 }

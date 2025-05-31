@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.ListaControlador">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.ListaControlador">
    <children>
       <Label prefHeight="58.0" prefWidth="204.0" text="NavegaTest" textAlignment="CENTER">
          <font>
@@ -22,7 +22,7 @@
       <Pane>
          <children>
             <VBox prefHeight="286.0" prefWidth="600.0" />
-            <ListView layoutX="83.0" prefHeight="286.0" prefWidth="424.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 15, 0, 0, 0);" />
+            <ListView fx:id="list" editable="true" layoutX="83.0" prefHeight="286.0" prefWidth="424.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 15, 0, 0, 0);" />
          </children>
       </Pane>
       <HBox prefHeight="54.0" prefWidth="600.0">

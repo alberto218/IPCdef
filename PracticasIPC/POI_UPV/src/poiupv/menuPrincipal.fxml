@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.menuPrincipalController">
    <children>
       <Label alignment="CENTER" prefHeight="71.0" prefWidth="501.0" text="NavegaTest">
@@ -34,10 +33,10 @@
       </VBox>
       <VBox alignment="CENTER" prefHeight="284.0" prefWidth="502.0" spacing="20.0">
          <children>
-            <Button fx:id="ejerciciosBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" text="Realizar Ejercicios" />
+            <Button fx:id="ejerciciosBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleEjerciciosBtn" prefHeight="35.0" prefWidth="130.0" text="Realizar Ejercicios" />
             <Button fx:id="estadisticasBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" text="Ver Estadísticas" />
-            <Button fx:id="modificarPerfilBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" text="Modificar Perfil" />
-            <Button fx:id="cerrarSesionBtn" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" text="Cerrar Sesión" />
+            <Button fx:id="modificarPerfilBtn" mnemonicParsing="false" onAction="#handleModificarPerfilBtn" prefHeight="35.0" prefWidth="130.0" text="Modificar Perfil" />
+            <Button fx:id="cerrarSesionBtn" mnemonicParsing="false" onAction="#handleCerrarSessionBtn" prefHeight="35.0" prefWidth="130.0" text="Cerrar Sesión" />
          </children>
       </VBox>
    </children>

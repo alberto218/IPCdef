@@ -28,6 +28,7 @@ import javafx.scene.text.Text;
 
 public class ListaControlador implements Initializable {
 
+    @FXML
     private ListView<ejercicios> list;
     @FXML
     private Button btnRealizarEjercicio;
@@ -96,19 +97,40 @@ public class ListaControlador implements Initializable {
 
     @FXML
     private void buttonHandler(ActionEvent event) {
-        Object source = event.getSource();
-        String id = ((Button)source).getId();
+    Object source = event.getSource();
+    String id = ((Button)source).getId();
 
-        switch(id) {
-            case "btnVolver":
-                PoiUPVApp.setRoot("principal3");
-                break;
+    switch(id) {
+        case "btnVolver":
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("menuPrincipal.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Menú Principal");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            break;
 
-            case "btnRealizarEjercicio":
-                ejercicios seleccionado = list.getSelectionModel().getSelectedItem();
-                if (seleccionado == null) return;
-                // Aquí iría la lógica para realizar el ejercicio seleccionado
-                break;
-        }
-   }
+        case "btnRealizarEjercicio":
+            ejercicios seleccionado = list.getSelectionModel().getSelectedItem();
+            if (seleccionado == null) return;
+            // Aquí va la lógica de abrir VistaEjercicio.fxml, si aplica
+            break;
+        case "btnaleatorio":
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/poiupv/VistaEjercicio.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Ejercicio Aleatorio");
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            break;
+    }
+}
 }

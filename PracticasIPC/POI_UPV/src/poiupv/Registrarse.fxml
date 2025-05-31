@@ -45,6 +45,9 @@
                <padding>
                   <Insets left="15.0" />
                </padding>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Label>
             <Label text="Contraseña:" GridPane.rowIndex="2">
                <GridPane.margin>
@@ -58,6 +61,9 @@
                <GridPane.margin>
                   <Insets left="15.0" />
                </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
             </Label>
             <TextField fx:id="nicknameField" GridPane.columnIndex="1">
                <GridPane.margin>
@@ -77,11 +83,17 @@
             <DatePicker fx:id="birthdatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
                <children>
-                  <Label text="Avatar:" />
+                  <Label text="Avatar:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
                   <Button fx:id="chooseAvatarBtn" mnemonicParsing="false" onAction="#chooseAvatar" style="-fx-background-color: #7CFC00; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 2, 2);" text="Seleccionar imagen">
                      <VBox.margin>
                         <Insets left="10.0" top="10.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
                </children>
                <GridPane.margin>
@@ -100,6 +112,9 @@
          <VBox.margin>
             <Insets left="15.0" right="15.0" />
          </VBox.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
       </Button>
    </children>
 </VBox>

@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.modificarPerfilController">
    <children>
       <Label alignment="CENTER" prefHeight="73.0" prefWidth="498.0" text="Modificar Perfil">
@@ -92,8 +91,8 @@
       <Label fx:id="errorLabel" alignment="CENTER" prefHeight="18.0" prefWidth="498.0" textFill="RED" />
       <HBox alignment="CENTER" prefHeight="80.0" prefWidth="498.0">
          <children>
-            <Button fx:id="backBtn" mnemonicParsing="false" text="Volver" />
-            <Button fx:id="updateBtn" mnemonicParsing="false" text="Guardar cambios">
+            <Button fx:id="backBtn" mnemonicParsing="false" onAction="#handleBackButton" text="Volver" />
+            <Button fx:id="updateBtn" mnemonicParsing="false" onAction="#handleUpdatePerfil" text="Guardar cambios">
                <HBox.margin>
                   <Insets left="277.0" />
                </HBox.margin>

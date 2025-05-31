@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.VistaEjercicioController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.VistaEjercicioController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #ADD8E6;">
          <children>
@@ -54,7 +54,7 @@
             </VBox>
             <HBox prefHeight="54.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="butnVolver" mnemonicParsing="false" prefHeight="26.0" prefWidth="204.0" style="-fx-background-color: #FF7F50; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 2, 2)02;" text="Volver">
+                  <Button fx:id="butnVolver" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="26.0" prefWidth="204.0" style="-fx-background-color: #FF7F50; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 5, 0, 2, 2)02;" text="Volver">
                      <HBox.margin>
                         <Insets left="20.0" right="20.0" top="10.0" />
                      </HBox.margin>

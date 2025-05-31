@@ -4,6 +4,7 @@ package poiupv;
  *
  * @author alber
  */
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.application.Application;
@@ -19,9 +20,20 @@ import javafx.stage.Stage;
  * @author jose
  */
 public class PoiUPVApp extends Application {
-
-    static void setRoot(String principal3) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    private static Stage primaryStage;
+    
+    public static void setRoot(String fxmlName) {
+        try {
+            FXMLLoader loader = new FXMLLoader(PoiUPVApp.class.getResource("/poiupv/menuPrincipal.fxml"));
+            Parent root = loader.load();
+            primaryStage.setScene(new Scene(root));
+            primaryStage.setTitle("POI UPV");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.println("No se pudo cargar la escena:  menuPrincipal.fxml");
+        }
     }
     
      @Override

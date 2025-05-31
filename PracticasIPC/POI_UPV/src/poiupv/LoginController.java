@@ -75,13 +75,25 @@ public class LoginController {
                 passwordErrorLabel.setText("Contraseña incorrecta.");
             } else {
                 System.out.println("Login correcto");
-                // Aquí puedes redirigir a la vista principal
-                // por ejemplo: cargarMenuPrincipal(user);
+                // Redirigir a menuPrincipal.fxml
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("menuPrincipal.fxml"));
+                Parent root = loader.load();
+
+                // Obtener el controlador y pasarle el usuario
+                menuPrincipalController controller = loader.getController();
+                controller.setUsuario(user);
+
+                Stage stage = (Stage) botonLogin.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.show();
             }
 
-        } catch (NavDAOException e) {
+        } catch (NavDAOException e) {   
             e.printStackTrace();
             nicknameErrorLabel.setText("Error de conexión.");
+        }catch (IOException e) {
+            e.printStackTrace();
+            passwordErrorLabel.setText("Error al cargar el menú principal.");
         }
     }
     
